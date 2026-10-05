@@ -1,0 +1,64 @@
+---
+import { processSteps } from '../data/process';
+import SectionHeading from './ui/SectionHeading.astro';
+import Reveal from './ui/Reveal.astro';
+---
+
+<section id="servicios" aria-labelledby="servicios-titulo" class="bg-paper py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <SectionHeading
+      id="servicios-titulo"
+      eyebrow="Alcance del servicio"
+      title="Un modelo escalonado que genera valor desde el inicio"
+      intro="Priorizamos riesgos críticos y le permitimos tomar decisiones informadas antes de una implementación completa. Incluye asesoría continua, revisión estructural, prevención de contingencias y acompañamiento en la toma de decisiones."
+    />
+
+    <div class="relative">
+    <span aria-hidden="true" class="absolute top-6 right-0 left-0 hidden h-px bg-navy/15 xl:block"></span>
+    <ol class="relative grid items-start gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {
+        processSteps.map((step, index) => (
+          <Reveal as="li" delay={index * 120} class="relative">
+            <span
+              aria-hidden="true"
+              class="relative z-10 mb-6 hidden size-12 place-items-center rounded-full bg-navy font-serif text-lg font-semibold text-gold ring-8 ring-paper md:grid"
+            >
+              {index + 1}
+            </span>
+            <article class="fl-card rounded-md border border-navy/10 bg-white p-7">
+              <p class="text-xs font-semibold tracking-[0.2em] text-gold-dark uppercase">Etapa {index + 1}</p>
+              <h3 class="mt-2 font-serif text-xl font-semibold">{step.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-navy/80">
+                <span class="font-semibold text-navy">Objetivo:</span> {step.objective}
+              </p>
+
+              {step.scope.length > 0 && (
+                <>
+                  <h4 class="mt-5 text-sm font-semibold">Alcance</h4>
+                  <ul class="mt-2 space-y-2">
+                    {step.scope.map((item) => (
+                      <li class="flex gap-2 text-sm leading-relaxed text-navy/75">
+                        <span aria-hidden="true" class="mt-2 size-1.5 shrink-0 rounded-full bg-gold" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              {step.deliverable && (
+                <div class="pt-6">
+                  <p class="border-t border-navy/10 pt-4 text-sm">
+                    <span class="block font-semibold">Entregable</span>
+                    <span class="text-navy/75">{step.deliverable}</span>
+                  </p>
+                </div>
+              )}
+            </article>
+          </Reveal>
+        ))
+      }
+    </ol>
+    </div>
+  </div>
+</section>

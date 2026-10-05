@@ -1,0 +1,64 @@
+---
+import { branches, type BranchIcon } from '../data/branches';
+import SectionHeading from './ui/SectionHeading.astro';
+import Reveal from './ui/Reveal.astro';
+
+const iconPaths: Record<BranchIcon, string> = {
+  building: 'M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16M15 9h4a1 1 0 0 1 1 1v11M3 21h18M8 8h3M8 12h3M8 16h3',
+  users: 'M16 19v-1a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v1M9 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6M22 19v-1a4 4 0 0 0-3-3.9M16 4.1a3 3 0 0 1 0 5.8',
+  briefcase: 'M3 8h18v11H3zM8 8V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3M3 13h18',
+  shield: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4',
+  scale: 'M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z',
+  document: 'M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8zM14 3v5h5M9 13h6M9 17h6',
+};
+---
+
+<section id="areas" aria-labelledby="areas-titulo" class="relative overflow-hidden bg-navy py-24 md:py-32">
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -bottom-48 -left-40 size-[32rem] rounded-full bg-[radial-gradient(circle,rgba(212,176,98,0.14)_0%,transparent_65%)]"
+  >
+  </div>
+  <div class="relative mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+    <div>
+      <SectionHeading
+        id="areas-titulo"
+        eyebrow="Ramas especializadas"
+        title="Atención integral en las principales áreas del derecho"
+        intro="Un servicio de calidad, personalizado, de confianza y efectivo para atender y dar respuesta a sus necesidades y obligaciones."
+        dark
+      />
+    </div>
+
+    <ul class="grid gap-4 sm:grid-cols-2">
+      {
+        branches.map((branch, index) => (
+          <Reveal
+            as="li"
+            effect="right"
+            delay={index * 80}
+            class="group flex gap-4 rounded-md border border-cream/10 p-5 transition duration-300 hover:translate-x-1 hover:bg-white/5"
+          >
+            <span class="grid size-12 shrink-0 place-items-center rounded-md bg-white/8 transition-colors group-hover:bg-gold/20">
+              <svg
+                aria-hidden="true"
+                class="size-6 stroke-cream transition duration-300 group-hover:rotate-6 group-hover:stroke-gold"
+                fill="none"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path d={iconPaths[branch.icon]} />
+              </svg>
+            </span>
+            <div>
+              <h3 class="font-serif text-lg font-semibold text-cream">{branch.name}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-cream/75">{branch.description}</p>
+            </div>
+          </Reveal>
+        ))
+      }
+    </ul>
+  </div>
+</section>

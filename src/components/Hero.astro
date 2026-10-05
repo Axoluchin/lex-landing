@@ -1,0 +1,61 @@
+---
+import Reveal from './ui/Reveal.astro';
+import Chip from './ui/Chip.astro';
+import Video from './ui/Video.astro';
+
+const highlights = ['Preventivo', 'Estratégico', 'Estándares internacionales'];
+---
+
+<section id="inicio" aria-labelledby="inicio-titulo" class="relative isolate overflow-hidden bg-navy pt-16 md:pt-20">
+  <Video src="/videos/vid1.mp4" loop={false} eager class="absolute inset-0 -z-20 size-full" />
+  <!-- Capa para asegurar el contraste del texto sobre el video -->
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 bg-linear-to-r from-navy/95 via-navy/75 to-navy/30 max-lg:bg-navy/75"
+  >
+  </div>
+
+  <div
+    class="mx-auto flex min-h-[calc(100svh-4rem)] max-w-7xl items-center px-5 py-16 md:min-h-[calc(100svh-5rem)] md:px-8 lg:py-24"
+  >
+    <div class="max-w-2xl">
+      <Reveal>
+        <p class="mb-6 text-xs font-semibold tracking-[0.3em] text-gold uppercase">Fiscal Lex Soluciones, S.C.</p>
+      </Reveal>
+      <Reveal delay={100}>
+        <h1 id="inicio-titulo" class="font-serif text-4xl leading-[1.1] font-semibold text-cream text-balance sm:text-5xl lg:text-6xl">
+          La seguridad jurídica <span class="text-gold italic">no tiene precio.</span>
+        </h1>
+      </Reveal>
+      <Reveal delay={200}>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-cream/85">
+          Acompañamiento integral para consolidar la estructura corporativa, mitigar riesgos legales y fortalecer el
+          cumplimiento normativo de su grupo empresarial.
+        </p>
+      </Reveal>
+      <Reveal delay={300}>
+        <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2" aria-label="Nuestro enfoque">
+          {
+            highlights.map((item) => (
+              <Chip as="li" tone="dark" class="text-cream">{item}</Chip>
+            ))
+          }
+        </ul>
+      </Reveal>
+      <Reveal delay={400} class="mt-10 flex flex-col gap-3 sm:flex-row">
+        <a
+          href="#contacto"
+          class="rounded-md bg-gold px-7 py-3.5 text-center font-semibold text-navy transition-transform duration-300 hover:-translate-y-0.5"
+        >
+          Agende una asesoría
+        </a>
+        <a
+          href="#servicios"
+          class="rounded-md border border-cream/40 px-7 py-3.5 text-center font-semibold text-cream backdrop-blur-sm transition-colors hover:border-gold hover:text-gold"
+        >
+          Ver servicios <span aria-hidden="true">→</span>
+        </a>
+      </Reveal>
+    </div>
+  </div>
+</section>

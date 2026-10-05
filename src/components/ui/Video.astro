@@ -1,0 +1,69 @@
+---
+/**
+ * Video decorativo, silenciado y sin controles.
+ * - Se descarga solo al acercarse a la pantalla (salvo `eager`).
+ * - Se reproduce mientras es visible y se pausa al salir.
+ * - Con "reducir movimiento" activo no se reproduce solo.
+ */
+interface Props {
+  src: string;
+  loop?: boolean;
+  eager?: boolean;
+  class?: string;
+}
+
+const { src, loop = true, eager = false, class: className } = Astro.props;
+---
+
+<video
+  data-video
+  data-src={src}
+  data-eager={eager ? '' : undefined}
+  muted
+  playsinline
+  disablepictureinpicture
+  loop={loop}
+  preload={eager ? 'auto' : 'none'}
+  aria-hidden="true"
+  tabindex="-1"
+  class:list={['bg-navy object-cover', className]}
+>
+</video>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const videos = document.querySelectorAll<HTMLVideoElement>('video[data-video]');
+
+  const load = (video: HTMLVideoElement) => {
+    if (video.src) return;
+    video.src = video.dataset.src!;
+    // Sin autoplay se muestra el primer cuadro como imagen fija
+    if (reduceMotion) video.preload = 'metadata';
+  };
+
+  const play = (video: HTMLVideoElement) => {
+    // Un video sin loop que ya terminó se queda en su último cuadro
+    if (reduceMotion || video.ended) return;
+    video.play().catch(() => {});
+  };
+
+  videos.forEach((video) => {
+    if (video.dataset.eager !== undefined) load(video);
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        const video = target as HTMLVideoElement;
+        if (isIntersecting) {
+          load(video);
+          play(video);
+        } else if (video.src) {
+          video.pause();
+        }
+      });
+    },
+    { rootMargin: '200px 0px' },
+  );
+  videos.forEach((video) => observer.observe(video));
+</script>

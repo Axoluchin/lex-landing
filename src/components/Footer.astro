@@ -1,0 +1,79 @@
+---
+import { fullAddress, navLinks, show, site } from '../data/site';
+
+const year = new Date().getFullYear();
+const legalLinks = [
+  { label: 'Aviso de privacidad', href: '#aviso-privacidad' }, // PLACEHOLDER: falta el documento
+  { label: 'Términos y condiciones', href: '#condiciones' },
+];
+---
+
+<footer class="bg-navy text-cream" aria-labelledby="footer-titulo">
+  <h2 id="footer-titulo" class="sr-only">Información del sitio</h2>
+  <div
+    class:list={[
+      'mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-2 md:px-8',
+      show.legal ? 'lg:grid-cols-[1.4fr_1fr_1.2fr_1fr]' : 'lg:grid-cols-[1.4fr_1fr_1.2fr]',
+    ]}
+  >
+    <div>
+      <a href="#inicio" class="inline-flex items-center gap-3">
+        <span aria-hidden="true" class="grid size-10 place-items-center rounded-md bg-gold font-serif text-lg font-bold text-navy">FL</span>
+        <span class="font-serif text-xl font-semibold">{site.name}</span>
+      </a>
+      <p class="mt-4 max-w-xs text-sm leading-relaxed text-cream/70">
+        Acompañamiento jurídico preventivo y estratégico para grupos empresariales en México.
+      </p>
+    </div>
+
+    <nav aria-labelledby="footer-indice">
+      <h3 id="footer-indice" class="text-xs font-semibold tracking-[0.25em] text-gold uppercase">Índice</h3>
+      <ul class="mt-4 grid grid-cols-2 gap-2 md:grid-cols-1">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-cream/75 transition-colors hover:text-gold">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div>
+      <h3 class="text-xs font-semibold tracking-[0.25em] text-gold uppercase">Contacto</h3>
+      <address class="mt-4 space-y-2 text-sm leading-relaxed text-cream/75 not-italic">
+        <p>{fullAddress}</p>
+        <p><a href={site.phone.href} class="hover:text-gold">{site.phone.display}</a></p>
+        {show.email && <p><a href={`mailto:${site.email}`} class="hover:text-gold">{site.email}</a></p>}
+      </address>
+    </div>
+
+    {
+      show.legal && (
+        <div>
+          <h3 class="text-xs font-semibold tracking-[0.25em] text-gold uppercase">Legal</h3>
+          <ul class="mt-4 space-y-2">
+            {
+              legalLinks.map((link) => (
+                <li>
+                  <a href={link.href} class="text-sm text-cream/75 transition-colors hover:text-gold">
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="mt-4 text-sm text-cream/70">{site.legalName}</p>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="border-t border-cream/10">
+    <p class="mx-auto max-w-7xl px-5 py-6 text-xs text-cream/70 md:px-8">
+      © {year} {site.legalName} Todos los derechos reservados.
+    </p>
+  </div>
+</footer>

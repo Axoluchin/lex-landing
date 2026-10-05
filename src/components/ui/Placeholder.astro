@@ -1,0 +1,25 @@
+---
+/**
+ * Cuadro rojo temporal donde irá una imagen real.
+ * `id` identifica el espacio para cuando se indique qué imagen colocar.
+ */
+interface Props {
+  id: string;
+  label: string;
+  class?: string;
+}
+
+const { id, label, class: className = '' } = Astro.props;
+---
+
+<div
+  role="img"
+  aria-label={`Imagen pendiente: ${label}`}
+  data-placeholder={id}
+  class:list={[
+    'flex items-center justify-center bg-red-600 p-4 text-center text-sm font-semibold tracking-wide text-white',
+    className,
+  ]}
+>
+  <span aria-hidden="true">Imagen pendiente · {id}</span>
+</div>

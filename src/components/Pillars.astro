@@ -1,0 +1,58 @@
+---
+import { pillars } from '../data/pillars';
+import SectionHeading from './ui/SectionHeading.astro';
+import Reveal from './ui/Reveal.astro';
+import Chip from './ui/Chip.astro';
+---
+
+<section id="pilares" aria-labelledby="pilares-titulo" class="bg-cream py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <SectionHeading
+      id="pilares-titulo"
+      eyebrow="Pilares estratégicos"
+      title="Siete pilares para blindar su empresa"
+      intro="Nuestro servicio contempla los siguientes pilares estratégicos, pensados para dar seguridad jurídica en cada frente de su organización."
+    />
+
+    <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {
+        pillars.map((pillar, index) => (
+          <Reveal as="li" delay={(index % 4) * 90} class="h-full">
+            <article
+              class:list={[
+                'fl-card group flex h-full min-h-60 flex-col rounded-md p-7 md:p-8',
+                index === 0
+                  ? 'bg-navy text-cream'
+                  : 'border border-navy/10 bg-sand text-navy hover:border-navy hover:bg-navy hover:text-cream',
+              ]}
+            >
+              <Chip size="xs" tone={index === 0 ? 'dark' : 'light'} markerClass="group-hover:text-gold" class="mb-6">
+                {pillar.tag}
+              </Chip>
+              <h3 class="font-serif text-xl leading-snug font-semibold">{pillar.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed opacity-80">{pillar.description}</p>
+              <span
+                aria-hidden="true"
+                class:list={['mt-auto pt-6 font-serif text-3xl group-hover:text-gold', index === 0 ? 'text-gold' : 'text-gold-dark']}
+              >
+                {String(index + 1).padStart(2, '0')}
+              </span>
+            </article>
+          </Reveal>
+        ))
+      }
+      <Reveal as="li" delay={270} class="h-full sm:col-span-2 lg:col-span-1">
+        <a
+          href="#servicios"
+          class="fl-card flex h-full min-h-60 flex-col justify-between rounded-md bg-gold p-7 text-navy md:p-8"
+        >
+          <span class="font-serif text-2xl leading-snug font-semibold">¿Por dónde empezar?</span>
+          <span class="text-sm leading-relaxed">
+            Conozca nuestro modelo escalonado, desde el diagnóstico hasta la operación continua.
+            <span class="mt-4 block font-semibold">Ver el proceso <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      </Reveal>
+    </ul>
+  </div>
+</section>

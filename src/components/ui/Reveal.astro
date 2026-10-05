@@ -1,0 +1,15 @@
+---
+/** Envoltorio que aparece con animación al entrar en pantalla. */
+interface Props {
+  as?: 'div' | 'li' | 'article';
+  effect?: 'up' | 'left' | 'right' | 'scale';
+  delay?: number;
+  class?: string;
+}
+
+const { as: Tag = 'div', effect = 'up', delay = 0, class: className } = Astro.props;
+---
+
+<Tag data-reveal={effect} style={`--reveal-delay: ${delay}ms`} class={className}>
+  <slot />
+</Tag>

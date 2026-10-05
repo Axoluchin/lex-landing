@@ -1,0 +1,32 @@
+---
+/** Etiqueta sin contorno: texto en negritas precedido del signo de párrafo legal (§). */
+interface Props {
+  as?: 'span' | 'li';
+  tone?: 'light' | 'dark';
+  size?: 'sm' | 'xs';
+  class?: string;
+  markerClass?: string;
+}
+
+const { as: Tag = 'span', tone = 'light', size = 'sm', class: className, markerClass } = Astro.props;
+---
+
+<Tag
+  class:list={[
+    'group/chip inline-flex items-baseline gap-1.5 font-bold',
+    size === 'xs' ? 'text-xs tracking-[0.14em] uppercase' : 'text-sm tracking-wide',
+    className,
+  ]}
+>
+  <span
+    aria-hidden="true"
+    class:list={[
+      'font-serif text-[1.15em] leading-none font-semibold transition-transform duration-300 group-hover/chip:-rotate-12',
+      tone === 'dark' ? 'text-gold' : 'text-gold-dark',
+      markerClass,
+    ]}
+  >
+    §
+  </span>
+  <slot />
+</Tag>

@@ -1,0 +1,124 @@
+---
+import { navLinks, site } from '../data/site';
+---
+
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 bg-paper/95 backdrop-blur-md transition-shadow duration-300 data-[scrolled=true]:shadow-md"
+>
+  <nav aria-label="Principal" class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-20 md:px-8">
+    <a href="#inicio" class="flex items-center gap-3">
+      <span
+        aria-hidden="true"
+        class="grid size-10 place-items-center rounded-md bg-navy font-serif text-lg font-bold text-gold"
+      >
+        FL
+      </span>
+      <span class="leading-tight">
+        <span class="block font-serif text-lg font-semibold">Fiscal Lex</span>
+        <span class="block text-[0.65rem] font-medium tracking-[0.2em] text-navy/70 uppercase">Soluciones, S.C.</span>
+      </span>
+    </a>
+
+    <ul class="hidden items-center gap-1 lg:flex">
+      {
+        navLinks.slice(1, -1).map((link) => (
+          <li>
+            <a
+              href={link.href}
+              data-nav-link
+              class="relative rounded px-3 py-2 text-sm font-medium text-navy/75 transition-colors hover:text-navy aria-[current=true]:text-navy after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-gold after:transition-transform after:duration-300 hover:after:scale-x-100 aria-[current=true]:after:scale-x-100"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href="#contacto"
+      class="hidden rounded-md bg-navy px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-navy-light lg:inline-block"
+    >
+      Contáctanos
+    </a>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="grid size-11 place-items-center rounded-md text-navy lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Abrir menú"
+    >
+      <svg aria-hidden="true" class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path data-icon="open" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"></path>
+        <path data-icon="close" class="hidden" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="border-t border-navy/10 bg-paper lg:hidden" hidden>
+    <ul class="flex flex-col px-5 py-4">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              data-nav-link
+              class="block rounded px-2 py-3 text-base font-medium text-navy/80 hover:bg-sand aria-[current=true]:text-navy aria-[current=true]:font-semibold"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header')!;
+  const toggle = document.getElementById('menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+
+  const setMenu = (open: boolean) => {
+    menu.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    toggle.querySelector('[data-icon="open"]')!.classList.toggle('hidden', open);
+    toggle.querySelector('[data-icon="close"]')!.classList.toggle('hidden', !open);
+  };
+
+  toggle.addEventListener('click', () => setMenu(Boolean(menu.hidden)));
+  menu.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.hidden) {
+      setMenu(false);
+      toggle.focus();
+    }
+  });
+
+  const onScroll = () => header.setAttribute('data-scrolled', String(window.scrollY > 8));
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Resalta el enlace de la sección visible
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+  const sections = document.querySelectorAll<HTMLElement>('main section[id]');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        links.forEach((link) => {
+          if (link.getAttribute('href') === `#${entry.target.id}`) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      });
+    },
+    { rootMargin: '-45% 0px -50% 0px' },
+  );
+  sections.forEach((section) => observer.observe(section));
+</script>
