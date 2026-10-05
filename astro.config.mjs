@@ -5,7 +5,8 @@ import sitemap from '@astrojs/sitemap';
 
 // TODO: reemplazar por el dominio definitivo
 export default defineConfig({
-  site: 'https://www.fiscallex.com.mx',
+  site: 'https://axoluchin.github.io',
+  base: '/lex-landing',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
