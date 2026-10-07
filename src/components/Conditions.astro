@@ -28,16 +28,16 @@ const iconPaths: Record<CommitmentIcon, string> = {
 };
 ---
 
-<section id="condiciones" aria-labelledby="condiciones-titulo" class="relative overflow-hidden bg-navy py-20 md:py-28">
+<section id="condiciones" aria-labelledby="condiciones-titulo" class="relative overflow-hidden bg-ink py-20 md:py-28">
   <div
     aria-hidden="true"
-    class="pointer-events-none absolute top-1/2 left-1/2 size-[44rem] -translate-1/2 rounded-full bg-[radial-gradient(circle,rgba(212,176,98,0.10)_0%,transparent_65%)]"
+    class="pointer-events-none absolute top-1/2 left-1/2 size-[44rem] -translate-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10)_0%,transparent_65%)]"
   >
   </div>
 
   <div class="relative mx-auto max-w-7xl px-5 md:px-8">
     <Reveal class="mx-auto max-w-3xl text-center">
-      <p class="mb-4 text-xs font-semibold tracking-[0.25em] text-gold uppercase">Condiciones generales</p>
+      <p class="mb-4 text-xs font-semibold tracking-[0.25em] text-accent uppercase">Condiciones generales</p>
       <h2 id="condiciones-titulo" class="font-serif text-3xl leading-tight font-semibold text-cream text-balance md:text-5xl">
         Un compromiso por escrito con su seguridad jurídica
       </h2>
@@ -47,14 +47,14 @@ const iconPaths: Record<CommitmentIcon, string> = {
       {
         commitments.map((item, index) => (
           <Reveal as="li" effect="up" delay={index * 140} class="group flex flex-col items-center text-center">
-            <span class="relative grid size-20 place-items-center rounded-full bg-gold/10 transition duration-500 group-hover:-translate-y-1 group-hover:bg-gold">
+            <span class="relative grid size-20 place-items-center rounded-full bg-accent/10 transition duration-500 group-hover:-translate-y-1 group-hover:bg-accent">
               <span
                 aria-hidden="true"
-                class="absolute inset-0 rounded-full bg-gold/15 opacity-0 transition duration-500 group-hover:scale-125 group-hover:opacity-100"
+                class="absolute inset-0 rounded-full bg-accent/15 opacity-0 transition duration-500 group-hover:scale-125 group-hover:opacity-100"
               />
               <svg
                 aria-hidden="true"
-                class="relative size-9 stroke-gold transition-colors duration-500 group-hover:stroke-navy"
+                class="relative size-9 stroke-accent transition-colors duration-500 group-hover:stroke-ink"
                 fill="none"
                 stroke-width="1.5"
                 stroke-linecap="round"
@@ -65,7 +65,7 @@ const iconPaths: Record<CommitmentIcon, string> = {
               </svg>
             </span>
             <h3 class="mt-6 font-serif text-2xl font-semibold text-cream">{item.title}</h3>
-            <span aria-hidden="true" class="mt-4 h-0.5 w-10 bg-gold transition-all duration-500 group-hover:w-20" />
+            <span aria-hidden="true" class="mt-4 h-0.5 w-10 bg-accent transition-all duration-500 group-hover:w-20" />
             <p class="mt-4 max-w-xs leading-relaxed text-cream/80">{item.description}</p>
           </Reveal>
         ))
@@ -75,7 +75,7 @@ const iconPaths: Record<CommitmentIcon, string> = {
     <Reveal delay={200} class="mt-16 text-center">
       <a
         href="#contacto"
-        class="inline-block rounded-md bg-gold px-8 py-3.5 font-semibold text-navy transition-transform duration-300 hover:-translate-y-0.5"
+        class="inline-block rounded-md bg-accent px-8 py-3.5 font-semibold text-ink transition-transform duration-300 hover:-translate-y-0.5"
       >
         Solicite su diagnóstico
       </a>

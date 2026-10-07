@@ -19,9 +19,9 @@ const channels = [
       intro="Cuéntenos su situación y le orientaremos sobre el siguiente paso. Escríbanos, llámenos o visítenos en nuestra oficina."
     />
 
-    <Reveal effect="scale" class="grid overflow-hidden rounded-md shadow-[0_22px_40px_-18px_rgb(10_10_92/0.35)] lg:grid-cols-2">
-        <address class="bg-navy p-8 text-cream not-italic md:p-10">
-          <p class="text-xs font-semibold tracking-[0.25em] text-gold uppercase">Oficina</p>
+    <Reveal effect="scale" class="grid overflow-hidden rounded-md shadow-[0_22px_40px_-18px_rgb(0_0_0/0.35)] lg:grid-cols-2">
+        <address class="bg-ink p-8 text-cream not-italic md:p-10">
+          <p class="text-xs font-semibold tracking-[0.25em] text-accent uppercase">Oficina</p>
           <p class="mt-2 font-serif text-2xl font-semibold">{site.address.city}</p>
           <p class="text-cream/75">{site.address.state}</p>
           <p class="mt-6 leading-relaxed text-cream/85">{fullAddress}.</p>
@@ -34,7 +34,7 @@ const channels = [
                   <span class="text-sm text-cream/70">{channel.label}</span>
                   <a
                     href={channel.href}
-                    class="font-medium text-cream underline-offset-4 hover:text-gold hover:underline"
+                    class="font-medium text-cream underline-offset-4 hover:text-accent hover:underline"
                     {...(channel.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                   >
                     {channel.value}

@@ -18,7 +18,7 @@ const { id, eyebrow, title, intro, dark = false, align = 'left' } = Astro.props;
   <p
     class:list={[
       'mb-4 text-xs font-semibold tracking-[0.25em] uppercase',
-      dark ? 'text-gold' : 'text-gold-dark',
+      dark ? 'text-accent' : 'text-accent-dark',
     ]}
   >
     {eyebrow}
@@ -27,14 +27,14 @@ const { id, eyebrow, title, intro, dark = false, align = 'left' } = Astro.props;
     id={id}
     class:list={[
       'font-serif text-3xl leading-tight font-semibold text-balance md:text-5xl',
-      dark ? 'text-cream' : 'text-navy',
+      dark ? 'text-cream' : 'text-ink',
     ]}
   >
     {title}
   </h2>
   {
     intro && (
-      <p class:list={['mt-6 text-base leading-relaxed md:text-lg', dark ? 'text-cream/80' : 'text-navy/75']}>
+      <p class:list={['mt-6 text-base leading-relaxed md:text-lg', dark ? 'text-cream/80' : 'text-ink/75']}>
         {intro}
       </p>
     )

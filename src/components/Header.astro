@@ -10,13 +10,13 @@ import { navLinks, site } from '../data/site';
     <a href="#inicio" class="flex items-center gap-3">
       <span
         aria-hidden="true"
-        class="grid size-10 place-items-center rounded-md bg-navy font-serif text-lg font-bold text-gold"
+        class="grid size-10 place-items-center rounded-md bg-ink font-serif text-lg font-bold text-accent"
       >
         FL
       </span>
       <span class="leading-tight">
         <span class="block font-serif text-lg font-semibold">Fiscal Lex</span>
-        <span class="block text-[0.65rem] font-medium tracking-[0.2em] text-navy/70 uppercase">Soluciones, S.C.</span>
+        <span class="block text-[0.65rem] font-medium tracking-[0.2em] text-ink/70 uppercase">Soluciones, S.C.</span>
       </span>
     </a>
 
@@ -27,7 +27,7 @@ import { navLinks, site } from '../data/site';
             <a
               href={link.href}
               data-nav-link
-              class="relative rounded px-3 py-2 text-sm font-medium text-navy/75 transition-colors hover:text-navy aria-[current=true]:text-navy after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-gold after:transition-transform after:duration-300 hover:after:scale-x-100 aria-[current=true]:after:scale-x-100"
+              class="relative rounded px-3 py-2 text-sm font-medium text-ink/75 transition-colors hover:text-ink aria-[current=true]:text-ink after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-ink after:transition-transform after:duration-300 hover:after:scale-x-100 aria-[current=true]:after:scale-x-100"
             >
               {link.label}
             </a>
@@ -38,7 +38,7 @@ import { navLinks, site } from '../data/site';
 
     <a
       href="#contacto"
-      class="hidden rounded-md bg-navy px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-navy-light lg:inline-block"
+      class="hidden rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-ink-light lg:inline-block"
     >
       Contáctanos
     </a>
@@ -46,7 +46,7 @@ import { navLinks, site } from '../data/site';
     <button
       type="button"
       id="menu-toggle"
-      class="grid size-11 place-items-center rounded-md text-navy lg:hidden"
+      class="grid size-11 place-items-center rounded-md text-ink lg:hidden"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Abrir menú"
@@ -58,7 +58,7 @@ import { navLinks, site } from '../data/site';
     </button>
   </nav>
 
-  <div id="mobile-menu" class="border-t border-navy/10 bg-paper lg:hidden" hidden>
+  <div id="mobile-menu" class="border-t border-ink/10 bg-paper lg:hidden" hidden>
     <ul class="flex flex-col px-5 py-4">
       {
         navLinks.map((link) => (
@@ -66,7 +66,7 @@ import { navLinks, site } from '../data/site';
             <a
               href={link.href}
               data-nav-link
-              class="block rounded px-2 py-3 text-base font-medium text-navy/80 hover:bg-sand aria-[current=true]:text-navy aria-[current=true]:font-semibold"
+              class="block rounded px-2 py-3 text-base font-medium text-ink/80 hover:bg-sand aria-[current=true]:text-ink aria-[current=true]:font-semibold"
             >
               {link.label}
             </a>

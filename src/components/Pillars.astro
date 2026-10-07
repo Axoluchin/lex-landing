@@ -22,18 +22,18 @@ import Chip from './ui/Chip.astro';
               class:list={[
                 'fl-card group flex h-full min-h-60 flex-col rounded-md p-7 md:p-8',
                 index === 0
-                  ? 'bg-navy text-cream'
-                  : 'border border-navy/10 bg-sand text-navy hover:border-navy hover:bg-navy hover:text-cream',
+                  ? 'bg-ink text-cream'
+                  : 'border border-ink/10 bg-sand text-ink hover:border-ink hover:bg-ink hover:text-cream',
               ]}
             >
-              <Chip size="xs" tone={index === 0 ? 'dark' : 'light'} markerClass="group-hover:text-gold" class="mb-6">
+              <Chip size="xs" tone={index === 0 ? 'dark' : 'light'} markerClass="group-hover:text-accent" class="mb-6">
                 {pillar.tag}
               </Chip>
               <h3 class="font-serif text-xl leading-snug font-semibold">{pillar.title}</h3>
               <p class="mt-3 text-sm leading-relaxed opacity-80">{pillar.description}</p>
               <span
                 aria-hidden="true"
-                class:list={['mt-auto pt-6 font-serif text-3xl group-hover:text-gold', index === 0 ? 'text-gold' : 'text-gold-dark']}
+                class:list={['mt-auto pt-6 font-serif text-3xl group-hover:text-accent', index === 0 ? 'text-accent' : 'text-accent-dark']}
               >
                 {String(index + 1).padStart(2, '0')}
               </span>
@@ -44,7 +44,7 @@ import Chip from './ui/Chip.astro';
       <Reveal as="li" delay={270} class="h-full sm:col-span-2 lg:col-span-1">
         <a
           href="#servicios"
-          class="fl-card flex h-full min-h-60 flex-col justify-between rounded-md bg-gold p-7 text-navy md:p-8"
+          class="fl-card flex h-full min-h-60 flex-col justify-between rounded-md border-2 border-ink bg-white p-7 text-ink md:p-8"
         >
           <span class="font-serif text-2xl leading-snug font-semibold">¿Por dónde empezar?</span>
           <span class="text-sm leading-relaxed">
