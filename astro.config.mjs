@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // TODO: reemplazar por el dominio definitivo
 export default defineConfig({
-  site: 'https://lex-fiscal.com ',
+  site: 'https://lex-fiscal.com',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
